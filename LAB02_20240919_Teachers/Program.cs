@@ -6,7 +6,7 @@
      */
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             // region - endregion blokkok miatt áttekinthetőbb a kód. Oldalt a kis +- jelekkel lehet kinyitni és becsukni őket.
 
@@ -17,33 +17,15 @@
              * 0 és N között. Módosítsuk úgy a programot, hogy az csak a páros számokat írja ki.
              */
 
-            Console.Write("Add meg, hány pozitív egész számot fogsz megadni:\t");   // https://learn.microsoft.com/en-us/cpp/c-language/escape-sequences?view=msvc-170
+            Console.Write("Adj meg egy pozitív egész számot:\t");                   // https://learn.microsoft.com/en-us/cpp/c-language/escape-sequences?view=msvc-170
             int n = int.Parse(Console.ReadLine());                                  // Az int.Parse() hibát dob, ha nem számot ír be a felhasználó, de első félévben nem elvárt a hibakezelés.
-            int counter = 0;
-            string numbers = "";
-
-            //Elöltesztelő ciklus. Ha a ciklusfeltétel igaz, végrehajtja a ciklusmagban szereplő utasításokat. Majd ismétel amíg a feltétel igaz.
-            while (counter < n)                                                     // Ciklusfeltétel. Amíg a kifejezés igaz, a ciklusmag ismétlődik.
-            { // Ciklusmag eleje.
-                Console.Write("Adj meg egy pozitív egész számot:\t");
-                int number = int.Parse(Console.ReadLine());
-                if (number > 0 && number < n)                                       // Csak páros számok gyűjtése, maradékos osztás maradékvizsgálatával: (number % 2 == 0)
+            for (int i = 0; i < n; i++)                                             // Felépülés: Inicializátor (int i=0); Feltétel (i<n); Iterátor (i++);
+            {// Ciklusmag eleje.
+                if (i % 2 == 0)                                                     // Csak páros számok gyűjtése, maradékos osztás segítségével. 
                 {
-
-                    numbers += number + " ";
+                    Console.WriteLine(i + " ");
                 }
-
-                counter++;                                                          //Számláló növelése. Ha nem növelnénk, sosem változna hamissá a ciklusfeltétel, és végtelen ciklust kapnánk.
-            } // Ciklusmag vége.
-
-            if (numbers != "")
-            {
-                Console.WriteLine($"Ezek a számok voltak 0 és {n} között: {numbers}."); //https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated
-            }
-            else
-            {
-                Console.WriteLine($"Egyik szám sem volt 0 és {n} között");
-            }
+            }// Ciklusmag vége.
 
             #endregion
 
@@ -61,7 +43,7 @@
             {
                 Console.Write("Kérlek add meg a jelszavad:\t");
                 passGuess = Console.ReadLine();
-            } while (password != passGuess);
+            } while (password != passGuess);// Ciklusfeltétel. Amíg a kifejezés igaz, a ciklusmag ismétlődik.
             Console.WriteLine("Sikeres bejelentkezés!");
 
             int tryCount = 0;
@@ -93,6 +75,7 @@
             Console.WriteLine("Adjon meg egy célszámot ]1,1000] intervallumban.");
             int target = int.Parse(Console.ReadLine());
             int guessCnt = 0;
+            //Elöltesztelő ciklus. Ha a ciklusfeltétel igaz, végrehajtja a ciklusmagban szereplő utasításokat. Majd ismétel amíg a feltétel igaz.
             while (rnd.Next(1, 1000) != target)             //rnd.Next(alsóH,felsőH) visszaad egy véletlenszámot. Felsőhatár exkluzív, alsóhatár inkluzív.
             {
                 guessCnt++;
@@ -115,11 +98,14 @@
             int turnNumber = 0;
             while (dice != 6)
             {
-                Console.WriteLine($"Üdvözöllek {turnNumber % playerCnt}. játékos, dobj az ENTER lenyomásával");
+                Console.WriteLine($"Üdvözöllek {turnNumber % playerCnt}. játékos, dobj az ENTER lenyomásával"); // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated
+
+                // Ehelyett opcionálisan egy szimpla Console.ReadLine() is elég lett volna, hisz az mindenképp ENTER leütésével ér véget.
                 while (Console.ReadKey().Key != ConsoleKey.Enter)
                 {
                     Console.WriteLine("\nAz entert kell lenyomni...");
                 }
+
                 dice = rnd.Next(1, 7);
                 Console.WriteLine("Ezt dobtad:" + dice);
                 if (dice == 6)
