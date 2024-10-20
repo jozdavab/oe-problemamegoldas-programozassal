@@ -2,6 +2,12 @@
 
 namespace FilesAndDirectories
 {
+    /*
+     * Szövegfájlok feldolgozási lehetőségei (File, StreamReader + StringBuilder).
+     * Karakterkódolás, az egyes sorok elkülönítése a beolvasási módtól függően.
+     * Adatok fájlba írása (File, StreamWriter). CSV feldolgozás, beolvasás listába
+     */
+
     public class Program
     {
         private static void Main(string[] args)

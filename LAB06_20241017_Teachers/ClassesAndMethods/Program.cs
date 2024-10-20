@@ -3,6 +3,11 @@ using System.Text;
 
 namespace ClassesAndMethods
 {
+    /*
+     * Saját osztályok készítésének, példányosításának gyakorlása. Láthatósági szabályok szerepe
+     * (public, private). Metódusok létrehozása, paraméterek használata, hozzáférés az adattagokhoz.
+     */
+
     public class Program
     {
         private static void Main(string[] args)
