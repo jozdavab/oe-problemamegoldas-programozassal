@@ -13,15 +13,15 @@
             #region Tömb-gyakorlás
 
             int variable = 10;
-            int[] exampleArray = new int[10];               //10 méretű intekből álló tömb. Minden helyen az int alapértéke (0) van benne.
-            exampleArray[0] = variable;                     //0 val indexeljük az első elemet. Értékül adjuk az első elemnek a variable változó által tárolt 10 es értéket.
+            int[] exampleArray = new int[10];               // 10 méretű intekből álló tömb. Minden helyen az int alapértéke (0) van benne.
+            exampleArray[0] = variable;                     // 0 val indexeljük az első elemet. Értékül adjuk az első elemnek a variable változó által tárolt 10 es értéket.
 
-            Console.WriteLine(exampleArray);                //Így NEM tudjuk kiíratni a tömb elemeit
+            Console.WriteLine(exampleArray);                // Így NEM tudjuk kiíratni a tömb elemeit
 
             //For ciklus. Tömb bejáráshoz ideális
-            for (int i = 0; i < exampleArray.Length; i++)   //I ciklusváltozó 0 ról indul, tömbhosszig megy el, egyesével lép.
+            for (int i = 0; i < exampleArray.Length; i++)   // I ciklusváltozó 0 ról indul, tömbhosszig megy el, egyesével lép.
             {
-                exampleArray[i] = i;                        //Tömb i. elemének feltöltése, i értékkel.
+                exampleArray[i] = i;                        // Tömb i. elemének feltöltése, i értékkel.
                 Console.Write(exampleArray[i] + " ");
             }
 
@@ -555,9 +555,64 @@
              * minden esetben létezik. Ugyanígy előfordulhat, hogy több megfelelő útvonal is található a labirintusban.
              */
 
-            #endregion
+            // A feladatmegoldás későbbi órán tanult elemeket is tartalmaz!
+            int rows = 10;
+            int cols = 10;
+            bool[,] maze = new bool[rows, cols];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    maze[i, j] = rnd.Next(2) == 1;
+                }
+            }
+            maze[rows - 1, cols - 1] = true;
 
-            Console.ReadKey();
+            Console.Clear();
+            Console.WriteLine("A labirintus:");
+            for (int i = 0; i < maze.GetLength(0); i++)
+            {
+                for (int j = 0; j < maze.GetLength(1); j++)
+                {
+                    Console.Write(maze[i, j] ? "#" : " ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.Write("Honann indulsz: (X Y) ");
+            string[] startCoords = Console.ReadLine().Split(" ");
+            int startX = int.Parse(startCoords[0]);
+            int startY = int.Parse(startCoords[1]);
+
+            bool[,] visited = new bool[maze.GetLength(0), maze.GetLength(1)];
+            bool passable = DepthFirstSearch(maze, startX, startY, visited);
+
+            Console.WriteLine($"A Labirintus végpontja elérhető {startX}-{startY} ből?: {passable}");
+
+            #endregion
         }
+
+        #region 12.feladat
+
+        static bool DepthFirstSearch(bool[,] maze, int x, int y, bool[,] visited)
+        {
+            int xMax = maze.GetLength(0);
+            int yMax = maze.GetLength(1);
+
+            if (x < 0 || x > xMax - 1 || y < 0 || y > yMax - 1 || !maze[x, y] || visited[x, y])
+                return false;
+
+            if (x == xMax && yMax == y)
+                return true;
+
+            visited[x, y] = true;
+
+            return DepthFirstSearch(maze, x - 1, y, visited) ||
+                    DepthFirstSearch(maze, x + 1, y, visited) ||
+                    DepthFirstSearch(maze, x, y - 1, visited) ||
+                    DepthFirstSearch(maze, x, y + 1, visited);
+        }
+
+        #endregion
     }
 }

@@ -1,15 +1,13 @@
 ﻿namespace LAB02_20240919_Teachers
 {
     /*
-     Feltételes ciklusok használata. Összetett logikai kifejezések, rövidzár-kiértékelés. 
-     Számláló ciklus használata. Véletlenszám-generálás.
+     * Feltételes ciklusok használata. Összetett logikai kifejezések, rövidzár-kiértékelés. 
+     * Számláló ciklus használata. Véletlenszám-generálás.
      */
     public class Program
     {
         private static void Main(string[] args)
         {
-            // region - endregion blokkok miatt áttekinthetőbb a kód. Oldalt a kis +- jelekkel lehet kinyitni és becsukni őket.
-
             #region 1.feladat
 
             /*
