@@ -1,0 +1,4 @@
+Hans Gruber;100@30;Pistol,MG;24,60
+Heinrich;80@35;MG,MG;120,180
+Uli;90@35;MG,RPG;90,2
+Theo;100@30;Rifle;4
